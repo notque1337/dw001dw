@@ -35,7 +35,6 @@ bot.command('allcountusers', (ctx) => {
   .then((result) => {
   let smUsers = Object.keys(result).length
   ctx.reply(`Всего юзеров, ${smUsers}`);
-
   })
 
 
@@ -47,6 +46,7 @@ bot.on('message', async (ctx) => {
   if(StreamersRegexList.YOUTUBE.test(ctx.message.text)){
   console.log(ctx.message.text);
   const infVideo = await parseInfo(ctx.message.text);
+  try{
   const getBufferVideo = await DownloadAudioOnly(infVideo);
     ctx.reply("Начал загрузку аудио, в среднем это занимает длительность видео...");
     
@@ -60,6 +60,9 @@ bot.on('message', async (ctx) => {
 console.log(sendAudioUser);
   // Using context shortcut
   await ctx.reply(`Надеюсь я тебе помог :)`);
+}catch(e){
+  await ctx.reply(`У нас проблемы.. мы пытаемся их решить`);
+}
 }else{
     await ctx.reply(`ты помоему перепуталб.. я только ютуб понимаю`);
 
