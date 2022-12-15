@@ -54,7 +54,8 @@ bot.on('message', async (ctx) => {
 
  const sendAudioUser = await ctx.replyWithAudio({
     url: `${getBufferVideo[0]}`,
-    filename: `${getBufferVideo[1]}`,
+    filename: `${getBufferVideo[1]}`},
+    {
     caption: `Получай аудио из видео YouTube: @SkachatmuzikuYoutubeBOT`
   })
   
