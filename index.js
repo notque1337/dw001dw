@@ -54,7 +54,8 @@ bot.on('message', async (ctx) => {
 
  const sendAudioUser = await ctx.replyWithAudio({
     url: `${getBufferVideo[0]}`,
-    filename: `${getBufferVideo[1]}`
+    filename: `${getBufferVideo[1]}`,
+    caption: `Получай аудио из видео YouTube: @SkachatmuzikuYoutubeBOT`
   })
   
 console.log(sendAudioUser);
@@ -64,7 +65,7 @@ console.log(sendAudioUser);
   await ctx.reply(`У нас проблемы.. мы пытаемся их решить`);
 }
 }else{
-    await ctx.reply(`ты помоему перепуталб.. я только ютуб понимаю`);
+    await ctx.reply(`Я понимаю только Ютуб, проверь ссылку`);
 
 }
 
