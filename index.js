@@ -3,6 +3,7 @@ import { Telegraf } from 'telegraf';
 import mongoose from "mongoose";
 import { RdIdUser } from "./models/post.js";
 import dotenv from 'dotenv';
+import http  from 'http';
 dotenv.config();
 const API_TOKEN_TGBOT = process.env.API_TOKEN_TGBOT;
 console.log('api', API_TOKEN_TGBOT)
@@ -12,6 +13,18 @@ mongoose
 .connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
 .then((res)=> console.log('connected to DB'))
 .catch((err)=> console.log('err'))
+
+
+
+const hostname = '127.0.0.1';
+const port = 3000;
+
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/plain');
+  res.end('Hello World');
+});
+
 
 const StreamersRegexList = {
     YOUTUBE: /^((?:https?:)\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))((?!channel)(?!user)\/(?:[\w\-]+\?v=|embed\/|v\/)?)((?!channel)(?!user)[\w\-]+)(((.*(\?|\&)t=(\d+))(\D?|\S+?))|\D?|\S+?)$/,
