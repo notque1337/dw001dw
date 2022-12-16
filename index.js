@@ -9,7 +9,7 @@ const port = 8000 || process.env.PORT
 dotenv.config();
 const API_TOKEN_TGBOT = process.env.API_TOKEN_TGBOT;
 console.log('api', API_TOKEN_TGBOT)
-const db = process.env.CONNECT_KEY_MONGO;
+const db = process.env.MONGO_URL;
 mongoose.set("strictQuery", false);
 mongoose
 .connect(db, {useNewUrlParser: true, useUnifiedTopology: true})
