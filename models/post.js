@@ -9,4 +9,4 @@ const postSchema = new Schema({
     }
 }, {timestamps: true})
 
-export const RdIdUser = mongoose.model('RdIdUser', postSchema);
+export const RdIdUser = mongoose.model('RdIdUserMUSIC', postSchema);
