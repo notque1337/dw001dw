@@ -3,7 +3,7 @@ import { Telegraf } from 'telegraf';
 import mongoose from "mongoose";
 import { RdIdUser } from "./models/post.js";
 import dotenv from 'dotenv';
-import http  from 'http';
+import express from 'express';
 dotenv.config();
 const API_TOKEN_TGBOT = process.env.API_TOKEN_TGBOT;
 console.log('api', API_TOKEN_TGBOT)
@@ -14,24 +14,16 @@ mongoose
 .then((res)=> console.log('connected to DB'))
 .catch((err)=> console.log('err'))
 
-
-
-const hostname = '0.0.0.0';
-const port = 3000;
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello World');
-});
-
-
 const StreamersRegexList = {
     YOUTUBE: /^((?:https?:)\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))((?!channel)(?!user)\/(?:[\w\-]+\?v=|embed\/|v\/)?)((?!channel)(?!user)[\w\-]+)(((.*(\?|\&)t=(\d+))(\D?|\S+?))|\D?|\S+?)$/,
 };
 
-const bot = new Telegraf(API_TOKEN_TGBOT, {handlerTimeout: 9_000_000});
+const app = express();
+app.listen('8000','0.0.0.0',()=>{
+      console.log("server is listening on 8000 port");
+})
 
+const bot = new Telegraf(API_TOKEN_TGBOT, {handlerTimeout: 9_000_000});
 bot.start(ctx => {
   const idUser =  ctx.from.id
   const rdIdUser = new RdIdUser({idUser});
