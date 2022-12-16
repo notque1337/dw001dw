@@ -35,10 +35,6 @@ bot.start(ctx => {
   rdIdUser.save()
   .then((result) => console.log(result))
   .catch((error) => console.log(error))
-var server = app.listen(process.env.PORT || 3000, function () {
-  var host = server.address().address
-  var port = server.address().port
-  console.log('App listening at http://%s:%s', host, port)
 })
   ctx.replyWithHTML("Привет. Отправь мне ссылку на видео YouTube - получи звук из видео");
 
