@@ -4,11 +4,10 @@ import mongoose from "mongoose";
 import { RdIdUser } from "./models/post.js";
 import dotenv from 'dotenv';
 import express from 'express';
+import http from 'http';
+const port = 8000 || process.env.PORT
 dotenv.config();
 const API_TOKEN_TGBOT = process.env.API_TOKEN_TGBOT;
-const port = 8000 || process.env.PORT
-
-
 console.log('api', API_TOKEN_TGBOT)
 const db = process.env.CONNECT_KEY_MONGO;
 mongoose.set("strictQuery", false);
@@ -21,9 +20,12 @@ const StreamersRegexList = {
     YOUTUBE: /^((?:https?:)\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))((?!channel)(?!user)\/(?:[\w\-]+\?v=|embed\/|v\/)?)((?!channel)(?!user)[\w\-]+)(((.*(\?|\&)t=(\d+))(\D?|\S+?))|\D?|\S+?)$/,
 };
 
-const app = express();
-app.listen(`${port}`,'0.0.0.0',()=>{
-      console.log("server is listening on 8000 port");
+var app = express()
+
+var server = app.listen(process.env.PORT || 3000, function () {
+  var host = server.address().address
+  var port = server.address().port
+  console.log('App listening at http://%s:%s', host, port)
 })
 
 const bot = new Telegraf(API_TOKEN_TGBOT, {handlerTimeout: 9_000_000});
