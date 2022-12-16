@@ -1,7 +1,7 @@
 import { parseInfo, DownloadAudioOnly } from "./src/youtube.js";
 import { Telegraf } from 'telegraf';
 import mongoose from "mongoose";
-import { RdIdUser } from "./models/post.js";
+import { RdIdUserMUSIC } from "./models/post.js";
 import dotenv from 'dotenv';
 import express from 'express';
 import http from 'http';
@@ -31,8 +31,8 @@ var server = app.listen(process.env.PORT || 3000, function () {
 const bot = new Telegraf(API_TOKEN_TGBOT, {handlerTimeout: 9_000_000});
 bot.start(ctx => {
   const idUser =  ctx.from.id
-  const rdIdUser = new RdIdUser({idUser});
-  rdIdUser.save()
+  const rdIdUserMUSIC = new RdIdUserMUSIC({idUser});
+  rdIdUserMUSIC.save()
   .then((result) => console.log(result))
   .catch((error) => console.log(error))
 
@@ -41,7 +41,7 @@ bot.start(ctx => {
 })
 
 bot.command('allcountusers', (ctx) => {
-  RdIdUser.find()
+  RdIdUserMUSIC.find()
   .then((result) => {
   let smUsers = Object.keys(result).length
   ctx.reply(`Всего юзеров, ${smUsers}`);
