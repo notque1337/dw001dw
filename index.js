@@ -6,6 +6,9 @@ import dotenv from 'dotenv';
 import express from 'express';
 dotenv.config();
 const API_TOKEN_TGBOT = process.env.API_TOKEN_TGBOT;
+const port = 8000 || process.env.PORT
+
+
 console.log('api', API_TOKEN_TGBOT)
 const db = process.env.CONNECT_KEY_MONGO;
 mongoose.set("strictQuery", false);
@@ -19,7 +22,7 @@ const StreamersRegexList = {
 };
 
 const app = express();
-app.listen('8000','0.0.0.0',()=>{
+app.listen(`${port}`,'0.0.0.0',()=>{
       console.log("server is listening on 8000 port");
 })
 
