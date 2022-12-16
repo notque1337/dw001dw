@@ -35,7 +35,7 @@ bot.start(ctx => {
   rdIdUser.save()
   .then((result) => console.log(result))
   .catch((error) => console.log(error))
-})
+
   ctx.replyWithHTML("Привет. Отправь мне ссылку на видео YouTube - получи звук из видео");
 
 })
