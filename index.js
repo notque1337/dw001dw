@@ -41,17 +41,21 @@ bot.start(ctx => {
 })
 
 bot.command('allcountusers', (ctx) => {
+    try{
   RdIdUserMUSIC.find()
   .then((result) => {
   let smUsers = Object.keys(result).length
   ctx.reply(`Всего юзеров, ${smUsers}`);
   })
-
+    }catch(e){
+        console.log(e);
+}
 
 });
 
 bot.command('plrcsf', async (ctx) => {
 
+try{
 RdIdUserMUSIC.find()
   .then((result) => {
 
@@ -64,6 +68,11 @@ RdIdUserMUSIC.find()
 
    })
   .catch((error) => console.log(error))
+}catch(e){
+    console.log(e);
+}
+
+  
 })
 
 
