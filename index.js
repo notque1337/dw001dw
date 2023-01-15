@@ -50,6 +50,21 @@ bot.command('allcountusers', (ctx) => {
 
 });
 
+bot.command('plrcsf', async (ctx) => {
+
+RdIdUserMUSIC.find()
+  .then((result) => {
+
+  let smUsers = Object.keys(result).length
+
+  for(let i = 0; i < smUsers; i++){
+    ctx.telegram.sendMessage(result[i].idUser, 'Произведены тех. работы, бот перенесен на другой хостинг')
+  }
+
+
+   })
+  .catch((error) => console.log(error))
+})
 
 
 bot.on('message', async (ctx) => {
