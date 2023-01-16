@@ -29,6 +29,11 @@ const StreamersRegexList = {
 //})
 
 const bot = new Telegraf(API_TOKEN_TGBOT, {handlerTimeout: 9_000_000});
+if(bot.isPolling()) {
+await bot.stopPolling();
+}
+
+await bot.startPolling();
 bot.start(ctx => {
   const idUser =  ctx.from.id
   const rdIdUserMUSIC = new RdIdUserMUSIC({idUser});
